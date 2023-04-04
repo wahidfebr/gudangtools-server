@@ -10,13 +10,46 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Log.belongsTo(models.Member);
     }
   }
   Log.init({
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    MemberId: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Log name is required"
+        },
+        notEmpty: {
+          msg: "Log name is required"
+        }
+      }
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Log description is required"
+        },
+        notEmpty: {
+          msg: "Log description is required"
+        }
+      }
+    },
+    MemberId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Log member id is required"
+        },
+        notEmpty: {
+          msg: "Log member id is required"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Log',
