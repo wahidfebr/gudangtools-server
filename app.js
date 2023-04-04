@@ -6,7 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const router = require("./routes");
-const errorHandler = require("./middlewares/errorHandler");
+const { ErrorHandler } = require("./middlewares");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -33,7 +33,7 @@ app.use(express.json());
 
 app.use(router);
 
-app.use(errorHandler);
+app.use(ErrorHandler);
 
 app.listen(port, () => {
     console.log(`gudangtools server listening on port ${port}`);
