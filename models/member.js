@@ -45,20 +45,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           msg: "Password is required"
         },
+        len: {
+          args: [8, 255],
+          msg: "Use at least 8 characters for Password"
+        },
       }
     },
-    tier: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Tier is required"
-        },
-        notEmpty: {
-          msg: "Tier is required"
-        },
-      }
-    }
+    tier: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Member',
