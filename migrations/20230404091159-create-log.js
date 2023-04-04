@@ -10,12 +10,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       description: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       MemberId: {
+        allowNull: false,
+        references: {
+          model: "Members"
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
         type: Sequelize.INTEGER
       },
       createdAt: {

@@ -10,15 +10,54 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Member.hasMany(models.Log);
     }
   }
   Member.init({
     name: DataTypes.STRING,
     avatarUrl: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    tier: DataTypes.STRING
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+        msg: "Email must be unique"
+      },
+      validate: {
+        notNull: {
+          msg: "Email is required"
+        },
+        notEmpty: {
+          msg: "Email is required"
+        },
+        isEmail: {
+          msg: "Email format is invalid"
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Password is required"
+        },
+        notEmpty: {
+          msg: "Password is required"
+        },
+      }
+    },
+    tier: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Tier is required"
+        },
+        notEmpty: {
+          msg: "Tier is required"
+        },
+      }
+    }
   }, {
     sequelize,
     modelName: 'Member',
