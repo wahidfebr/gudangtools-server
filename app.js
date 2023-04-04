@@ -20,7 +20,7 @@ const corsOptions = {
         if (whitelist.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
-            throw { name: "cors_not_allowed" };
+            throw { name: "CorsForbidden" };
         }
     }
 }
