@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Member.hasMany(models.Log);
+      Member.hasMany(models.Asset);
     }
   }
   Member.init({
