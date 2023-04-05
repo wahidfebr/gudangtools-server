@@ -1,13 +1,13 @@
-const { fetchCompanies } = require("../services");
+const { Stock } = require("../models");
 
 class GoApiController {
     static async readCompanies(req, res, next) {
         try {
-            const { status, message, data } = await fetchCompanies();
+            const stocks = await Stock.findAll();
 
-            res.status(200).json(data)
+            res.status(200).json(stocks);
         } catch (error) {
-            error.ERROR_FROM_FUNCTION = "GoApiController: fetchCompanies";
+            error.ERROR_FROM_FUNCTION = "GoApiController: readCompanies";
             next(error);
         }
     }
