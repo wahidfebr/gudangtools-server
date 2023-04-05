@@ -1,4 +1,4 @@
-const StockController = require("../controllers/StockController");
+const { StockController } = require("../controllers");
 const router = require("express").Router();
 
 router.route("/")
