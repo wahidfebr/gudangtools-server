@@ -1,4 +1,5 @@
 const { Asset, Member, Stock } = require("../models");
+const { getStockPriceByTickers } = require("../services");
 
 class AssetController {
     static async readAll(req, res, next) {
@@ -33,17 +34,16 @@ class AssetController {
             const {
                 id: StockId,
                 shares,
-                initialPrice
             } = req.body;
 
-            if (!StockId ||
-                !shares ||
-                !initialPrice) {
+            if (!StockId || !shares) {
                 throw { name: "BadRequest" };
             }
 
             const stock = await Stock.findByPk(StockId);
             if (!stock) throw { name: "StockNotFound" };
+
+            const [currentPrice] = await getStockPriceByTickers([stock.ticker])
 
             const [asset, created] = await Asset.findOrCreate({
                 where: { StockId, MemberId },
@@ -51,7 +51,7 @@ class AssetController {
                     StockId,
                     MemberId,
                     shares,
-                    initialPrice
+                    initialPrice: currentPrice.close
                 }
             })
 
