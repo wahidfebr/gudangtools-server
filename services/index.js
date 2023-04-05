@@ -1,3 +1,4 @@
 module.exports = {
-    isPasswordPwned: require("./PwnedService").isPasswordPwned
+    isPasswordPwned: require("./PwnedService").isPasswordPwned,
+    fetchCompanies: require("./GoApiService").fetchCompanies,
 }
