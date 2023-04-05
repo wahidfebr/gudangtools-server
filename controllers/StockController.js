@@ -1,16 +1,16 @@
 const { Stock } = require("../models");
 
-class GoApiController {
-    static async readCompanies(req, res, next) {
+class StockController {
+    static async readAll(req, res, next) {
         try {
             const stocks = await Stock.findAll();
 
             res.status(200).json(stocks);
         } catch (error) {
-            error.ERROR_FROM_FUNCTION = "GoApiController: readCompanies";
+            error.ERROR_FROM_FUNCTION = "StockController: readAll";
             next(error);
         }
     }
 }
 
-module.exports = GoApiController;
+module.exports = StockController;
