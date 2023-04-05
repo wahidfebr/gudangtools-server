@@ -20,6 +20,27 @@ const fetchCompanies = async () => {
     }
 }
 
+// @param tickers: Array, list tickers
+const getStockPriceByTickers = async (tickers) => {
+    try {
+        // * fetch stock price by one or multiple tickers
+        const { data } = await axios.get(baseUrl + apiVersion + "/prices", {
+            params: {
+                symbols: tickers.join(","),
+                api_key
+            }
+        });
+
+        const cleanedData = data.data.results;
+
+        return cleanedData;
+    } catch (error) {
+        error.SERVICES_ERROR = "GoApiService: getStockPriceByTickers";
+        throw error;
+    }
+}
+
 module.exports = {
-    fetchCompanies
+    fetchCompanies,
+    getStockPriceByTickers,
 }
