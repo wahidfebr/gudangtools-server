@@ -18,6 +18,10 @@ module.exports = (err, req, res, next) => {
             status = 400;
             message = `Input is required`;
             break;
+        case "InvalidPrefix":
+            status = 400;
+            message = `Prefix must be 5 characters`;
+            break;
         case "Unauthorized":
             status = 401;
             message = `Unauthorized`;
