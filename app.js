@@ -9,6 +9,9 @@ const router = require("./routes");
 const { ErrorHandler } = require("./middlewares");
 const app = express();
 const port = process.env.PORT || 3000;
+const cronJob = require('./cron');
+
+cronJob.start();
 
 const whitelist = [
     'http://localhost:8080',
