@@ -6,14 +6,16 @@ class PwnedApiController {
             const { prefix } = req.query;
             if (!prefix || prefix.length !== 5) throw { name: "InvalidPrefix" };
 
-            const data = await isPasswordPwned(prefix);
-
-            res.status(200).json({
-                data: data.split(/\r?\n/).map(el => {
-                    const [hash, count] = el.split(':');
-                    return [hash, Number(count)];
-                })
+            const data = await isPasswordPwned(prefix)
+            const cleanedData = data.split(/\r?\n/).map(el => {
+                const [suffix, count] = el.split(':');
+                return {
+                    suffix,
+                    count: Number(count)
+                }
             })
+
+            res.status(200).json(cleanedData);
         } catch (error) {
             error.ERROR_FROM_FUNCTION = "PwnedApiController: checkPasswordPwned";
             next(error);
