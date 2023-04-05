@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Initial price is required"
         },
         min: {
-          args: 0,
+          args: [0],
           msg: "Invalid stock price"
         }
       }
