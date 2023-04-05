@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require("axios");
 const baseUrl = "https://api.goapi.id";
 const apiVersion = "/v1/stock/idx";
