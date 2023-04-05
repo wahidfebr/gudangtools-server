@@ -22,6 +22,10 @@ module.exports = (err, req, res, next) => {
             status = 400;
             message = `Prefix must be 5 characters`;
             break;
+        case "DuplicateItem":
+            status = 400;
+            message = `Item already exists`;
+            break;
         case "Unauthorized":
             status = 401;
             message = `Unauthorized`;
@@ -38,6 +42,10 @@ module.exports = (err, req, res, next) => {
         case "Forbidden":
             status = 403;
             message = `Forbidden access`;
+            break;
+        case "StockNotFound":
+            status = 404;
+            message = `Stock not found`;
             break;
     }
 
