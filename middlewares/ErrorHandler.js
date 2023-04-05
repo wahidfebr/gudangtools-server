@@ -35,6 +35,10 @@ module.exports = (err, req, res, next) => {
             status = 403;
             message = `CORS not allowed`;
             break;
+        case "Forbidden":
+            status = 403;
+            message = `Forbidden access`;
+            break;
     }
 
     res.status(status).json({ message });
