@@ -15,6 +15,8 @@ cronJob.start();
 
 const whitelist = [
     'http://localhost:8080',
+    'https://gudangtools-client.web.app',
+    'https://gudangtools-client.firebaseapp.com',
     undefined, // whitelist postman and thunder client
 ];
 

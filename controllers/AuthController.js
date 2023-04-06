@@ -12,7 +12,8 @@ class AuthController {
             // * validation handled by sequelize
             const newMember = await Member.create({
                 email,
-                password
+                password,
+                tier: "premium" // premium feature not yet handled
             })
 
             res.status(201).json({
